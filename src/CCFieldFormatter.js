@@ -19,7 +19,10 @@ export default class CCFieldFormatter {
     this._displayedFields = [...displayedFields, "type"];
   }
 
-  formatValues = (values) => {
+  formatValues = (values, customCreditCardType) => {
+    if (customCreditCardType) {
+      valid.creditCardType.addCard(customCreditCardType);
+    }
     const card = valid.number(values.number).card || FALLBACK_CARD;
 
     return pick({

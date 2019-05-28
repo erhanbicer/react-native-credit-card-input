@@ -102,7 +102,8 @@ export default class CardView extends Component {
       expiry: "••/••",
       cvc: "•••",
     },
-
+    placeName: "FULL NAME",
+    placeExpiry: "MONTH/YEAR",
     scale: 1,
     fontFamily: Platform.select({ ios: "Courier", android: "monospace" }),
     imageFront: require("../images/card-front.png"),
@@ -112,7 +113,7 @@ export default class CardView extends Component {
   render() {
     const { focused,
       brand, name, number, expiry, cvc, customIcons,
-      placeholder, imageFront, imageBack, scale, fontFamily } = this.props;
+      placeholder, placeName, placeExpiry, imageFront, imageBack, scale, fontFamily } = this.props;
 
     const Icons = { ...defaultIcons, ...customIcons };
     const isAmex = brand === "american-express";
@@ -142,10 +143,10 @@ export default class CardView extends Component {
               </Text>
               <Text style={[s.baseText, { fontFamily }, s.name, !name && s.placeholder, focused === "name" && s.focused]}
                 numberOfLines={1}>
-                { !name ? placeholder.name : name.toUpperCase() }
+                { !name ? placeName : name.toUpperCase() }
               </Text>
               <Text style={[s.baseText, { fontFamily }, s.expiryLabel, s.placeholder, focused === "expiry" && s.focused]}>
-                MONTH/YEAR
+                {placeExpiry}
               </Text>
               <Text style={[s.baseText, { fontFamily }, s.expiry, !expiry && s.placeholder, focused === "expiry" && s.focused]}>
                 { !expiry ? placeholder.expiry : expiry }

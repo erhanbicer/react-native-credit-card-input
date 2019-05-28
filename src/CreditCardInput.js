@@ -80,6 +80,7 @@ export default class CreditCardInput extends Component {
       name: "Full Name",
       number: "1234 5678 1234 5678",
       expiry: "MM/YY",
+      placeExpiry: "MONTH/YEAR",
       cvc: "CVC",
       postalCode: "34567",
     },
@@ -144,7 +145,7 @@ export default class CreditCardInput extends Component {
       cardImageFront, cardImageBack, inputContainerStyle,
       values: { number, expiry, cvc, name, type }, focused,
       allowScroll, requiresName, requiresCVC, requiresPostalCode,
-      cardScale, cardFontFamily, cardBrandIcons,
+      cardScale, cardFontFamily, cardBrandIcons, placeholders: { name: placeName, placeExpiry }
     } = this.props;
 
     return (
@@ -159,6 +160,8 @@ export default class CreditCardInput extends Component {
           name={requiresName ? name : " "}
           number={number}
           expiry={expiry}
+          placeName={placeName}
+          placeExpiry={placeExpiry}
           cvc={cvc} />
         <ScrollView ref="Form"
           horizontal

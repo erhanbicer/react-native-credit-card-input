@@ -27,6 +27,7 @@ export default function connectToState(CreditCardInput) {
       requiresCVC: PropTypes.bool,
       requiresPostalCode: PropTypes.bool,
       validatePostalCode: PropTypes.func,
+      customCreditCardType: PropTypes.object
     };
 
     static defaultProps = {
@@ -41,6 +42,7 @@ export default function connectToState(CreditCardInput) {
                postalCode.length > 6 ? "invalid" :
                "incomplete";
       },
+      customCreditCardType: undefined
     };
 
     constructor() {
@@ -58,8 +60,9 @@ export default function connectToState(CreditCardInput) {
 
     setValues = values => {
       const newValues = { ...this.state.values, ...values };
+      const { customCreditCardType } = this.props;
       const displayedFields = this._displayedFields();
-      const formattedValues = (new CCFieldFormatter(displayedFields)).formatValues(newValues);
+      const formattedValues = (new CCFieldFormatter(displayedFields)).formatValues(newValues,customCreditCardType ? customCreditCardType : null );
       const validation = (new CCFieldValidator(displayedFields, this.props.validatePostalCode)).validateValues(formattedValues);
       const newState = { values: formattedValues, ...validation };
 
