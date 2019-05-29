@@ -1,2 +1,8 @@
 node_modules/
 example/
+preview-android-lite.gif
+preview-android.gif
+preview-ios-lite.gif
+preview-ios.gif
+readme.md
+yarn.lock
